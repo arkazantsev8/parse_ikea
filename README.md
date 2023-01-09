@@ -7,7 +7,9 @@ First, I needed to get a list of items to parse. I have just opened the page wit
 ![](liked_items.png)
 
 Then I extracted links to items and links to jpg previews using regexp 
+
 ```http[A-Za-z0-9-_\/:\.]+.jpg((?!http).)*https://www.ikea.com/pl/pl/p[A-Za-z0-9:\/.-]+\d```
+
 Items List is stored in [items.csv](items.csv)
 
 Second, I need to parse the links. Parsing of names and prices was quiet easy and is implemented with requests. But availability was updated dynamically with JavaScript, so i had to use Selenium. See the script [parse_ikea.py](https://github.com/arkazantsev8/parse_ikea/blob/main/parse_ikea.py) for the details
