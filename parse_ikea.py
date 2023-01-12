@@ -30,6 +30,7 @@ def extract_item_details(item_url):
     item['link'] = item_url
     item['name'] = tree.xpath("//span[@class='pip-header-section__title--big notranslate']/text()")[0]
     item['group'] = [str(x) for x in tree.xpath("//a[@class='bc-breadcrumb__link bc-link bc-link--black']/span/text()")][1]
+    item['group2'] = [str(x) for x in tree.xpath("//a[@class='bc-breadcrumb__link bc-link bc-link--black']/span/text()")][2]
     item['description'] = tree.xpath("//span[@class='pip-header-section__description-text']/text()")[0]
     price_int = tree.xpath("//span[@class='pip-temp-price__integer']/text()")[0]
     price_decimal = tree.xpath("//span[@class='pip-temp-price__decimal']/text()")
@@ -45,7 +46,7 @@ def extract_item_details(item_url):
     return item
 
 items = []
-for i in tqdm(ITEMS[:2]):
+for i in tqdm(ITEMS[:]):
     items.append(extract_item_details(i))
 
 ikea_data = pd.DataFrame(items)
